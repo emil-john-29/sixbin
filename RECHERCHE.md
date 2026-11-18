@@ -5,6 +5,14 @@ Diese Datei steuert die geplante Aufgabe, die regelmäßig neue Inhalte für die
 **Modus: vollautomatisch.** Gültige Änderungen werden ohne manuelle Freigabe veröffentlicht.
 Deshalb gelten die Regeln unten streng.
 
+## Zwei Sprachen
+Es gibt zwei Inhaltsdateien mit **identischer Struktur**: `content.json` (Deutsch) und
+`content.en.json` (Englisch). Jeder neue oder geänderte Eintrag wird in **beiden** Dateien
+gepflegt: gleiche `id`, gleiche Zahlen, Preise, Codes und Zeitstempel, nur die Texte übersetzt
+(name/title/text/effect/note/group/tag/facts). Eigennamen aus dem Spiel (z. B. Vice City,
+Trophäen-Namen, App-Namen) bleiben unverändert. Die englischen Texte klingen natürlich, nicht
+wörtlich übersetzt. Danach **beide** Dateien mit `tools/validate.py` prüfen.
+
 ## Ablauf bei jedem Lauf
 1. `content.json` lesen und merken, was schon drin ist (Cheat-Namen, Datenbank-IDs, Tipp-Titel, News).
 2. Im Web nach **Neuem seit dem letzten Lauf** suchen (deutsch und englisch):
@@ -17,7 +25,7 @@ Deshalb gelten die Regeln unten streng.
 4. Neue Einträge hinzufügen, nie bestehende löschen. Korrekturen sind erlaubt, wenn mehrere Quellen
    einen Fehler belegen. Dann `added` nicht ändern und eine News-Zeile dazu schreiben.
 5. `updatedAt` auf das heutige Datum setzen.
-6. `python3 tools/validate.py content.json` ausführen. **Nur bei „✓ … gültig“ committen und pushen.**
+6. `python3 tools/validate.py content.json` und `python3 tools/validate.py content.en.json` ausführen. **Nur bei „✓ … gültig“ committen und pushen.**
    Bei Fehlern: korrigieren oder die betroffenen neuen Einträge wieder entfernen.
 7. Commit-Nachricht: `Inhalte: +2 Cheats, +1 Fahrzeug, 1 News` (kurz, was dazukam).
 8. Gibt es nichts Neues, wird nichts geändert und nichts committet.
