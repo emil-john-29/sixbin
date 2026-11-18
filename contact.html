@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact – SixBin</title><style>body{background:#0e1223;color:#f6ebdd;font:16px/1.6 -apple-system,system-ui,sans-serif;max-width:720px;margin:0 auto;padding:32px 20px}
+h1{font-size:44px;font-style:italic;letter-spacing:-1px;margin:0 0 8px}a{color:#ffb04a}
+.bar{height:5px;width:140px;background:linear-gradient(90deg,#ffb04a,#ff615c,#ff5499);margin-bottom:24px}
+label{display:block;color:#ff615c;font:700 12px ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;margin:18px 0 6px}
+input,textarea{width:100%;box-sizing:border-box;background:#191e35;border:1px solid #2c3150;border-radius:12px;color:#f6ebdd;font:16px -apple-system,system-ui,sans-serif;padding:12px 14px}
+textarea{min-height:160px;resize:vertical}input:focus,textarea:focus{outline:none;border-color:#ff615c}
+button{margin-top:22px;width:100%;background:#ff615c;color:#0e1223;border:0;border-radius:12px;padding:15px;font:700 14px ui-monospace,monospace;letter-spacing:2px;cursor:pointer}
+button:disabled{opacity:.5}.hp{position:absolute;left:-9999px}small{color:#8a86a6;display:block;margin-top:14px}
+#ok,#err{display:none;margin-top:20px;padding:14px;border-radius:12px}#ok{background:#1d4a45}#err{background:#4a1d24}</style></head>
+<body><a href="./en.html">← SixBin</a><h1>Contact</h1><div class="bar"></div>
+<p>Questions, found a mistake or have feedback about SixBin? Write to us – we'll reply as soon as possible.</p>
+<form id="f" action="https://formspree.io/f/xqpqbdrj" method="POST">
+<label for="name">Name</label><input id="name" name="name" required maxlength="100" autocomplete="name">
+<label for="email">Email</label><input id="email" name="email" type="email" required maxlength="200" autocomplete="email">
+<label for="message">Message</label><textarea id="message" name="message" required maxlength="5000"></textarea>
+<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+<input type="hidden" name="_subject" value="SixBin – Contact">
+<button id="b" type="submit">SEND MESSAGE</button>
+<small>Your message is forwarded to us via the Formspree service. Details in our <a href="privacy.html">privacy policy</a>. You can also email us: <a href="mailto:emil-john@gmx.net">emil-john@gmx.net</a>.</small>
+</form>
+<div id="ok">Thanks! Your message has been sent.</div><div id="err">Sorry, that didn't work. Please try again or email us.</div>
+<script>
+const f=document.getElementById('f'),b=document.getElementById('b');
+f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;
+try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}});
+if(r.ok){f.style.display='none';document.getElementById('ok').style.display='block'}else throw 0}
+catch(_){document.getElementById('err').style.display='block';b.disabled=false}});
+</script>
+</body></html>
